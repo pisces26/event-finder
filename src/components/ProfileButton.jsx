@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 export default function BasicMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -14,7 +14,6 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const navigate = useNavigate();
 
   return (
     <div>
@@ -37,8 +36,8 @@ export default function BasicMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Admin</MenuItem>
-        <MenuItem onClick={() => navigate("/login")} style={{ cursor: "pointer", padding: "8px" }}>Login</MenuItem>
+        <MenuItem><Link to={"/CreateEvent/AdminSignup"}>Admin</Link></MenuItem>
+        <MenuItem><Link to={"register"}>Signup</Link></MenuItem>
         <MenuItem onClick={handleClose}>Logout</MenuItem>
       </Menu>
     </div>

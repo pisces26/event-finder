@@ -6,6 +6,10 @@ import IndexPage from "./components/IndexPage.jsx";
 import LoginPage from "./components/LoginPage.jsx";
 import RegisterPage from "./components/RegisterPage.jsx";
 import Layout from "./Layout.jsx";
+import Plays from "./components/category/Plays.jsx";
+import EventForm from "./components/CreateEvent/EventForm.jsx";
+import AdminSignupForm from "./components/CreateEvent/AdminSignup.jsx";
+import AdminLoginForm from "./components/CreateEvent/AdminLogin.jsx";
 
 
 const App = () => {
@@ -16,7 +20,14 @@ const App = () => {
 
       <Route path="/login" element={<LoginPage/>} />
       <Route path="/register" element={<RegisterPage/>} />
+
+      <Route path="/category/:Plays" element={<Plays />} />
+      <Route path="/CreateEvent/EventForm" element={<EventForm />} />
+
+      <Route path="/CreateEvent/AdminSignup" element={<AdminSignupForm />} />
+      <Route path="/CreateEvent/AdminLogin" element={<AdminLoginForm />} />
     </Route>
+
     </Routes>
   );
 };
