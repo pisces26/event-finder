@@ -1,5 +1,5 @@
 
-import Navbar from "./Navbar";
+
 import SearchBar from "./SearchBar";
 import CategorySection from "./CategorySection";
 import eventsData from "../data/eventsData"; // Your events JSON data
@@ -9,8 +9,6 @@ import EventCarousel from "./EventCarousel";
 export default function IndexPage() {
   return (
     <div>
-      
-      <Navbar />
       <SearchBar />
       <EventCarousel/>
       <div className="content">
