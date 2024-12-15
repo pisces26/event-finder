@@ -2,10 +2,10 @@ import React from "react";
 
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import IndexPage from "./components/IndexPage";
-import LoginPage from "./components/LoginPage";
-import RegisterPage from "./components/RegisterPage";
-import Layout from "./Layout";
+import IndexPage from "./components/IndexPage.jsx";
+import LoginPage from "./components/LoginPage.jsx";
+import RegisterPage from "./components/RegisterPage.jsx";
+import Layout from "./Layout.jsx";
 
 
 const App = () => {

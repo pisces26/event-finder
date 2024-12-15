@@ -16,7 +16,7 @@ export default function RegisterPage() {
           return;  // Stop further execution if any field is empty
         }
 
-      axios.post("http://localhost:3000/register", { name, email, password })
+      axios.post("http://localhost:3001/register", { name, email, password })
       .then(response => {
         console.log("Response:", response.data);
         alert("Registration successful!");

@@ -1,7 +1,7 @@
 import React from "react";
-import CitySelector from "../components/CitySelector";
-import ProfileButton from "../components/ProfileButton";
-import RightSideMenu from "../components/RightSideMenu";
+import CitySelector from "../components/CitySelector.js";
+import ProfileButton from "../components/ProfileButton.jsx";
+import RightSideMenu from "../components/RightSideMenu.jsx";
 import { Link } from "react-router-dom";
 
 const Header = () => (
