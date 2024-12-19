@@ -1,42 +1,54 @@
-import React, { useState } from "react";
-import AdminLoginForm from "./AdminLoginForm";
-import AdminSignupForm from "./AdminSignupForm";
-import CreateEventForm from "./CreateEventForm";  // Your existing event form
+// import React, { useState } from "react";
+// import AdminLoginForm from "./AdminLogin";
+// import AdminSignupForm from "./AdminSignup";
+// import CreateEventForm from "./EventForm";
 
-export default function AdminDashboard() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isSignup, setIsSignup] = useState(false);
+// export default function AdminDashboard() {
+//   const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state
+//   const [isSignup, setIsSignup] = useState(false);    // Track signup or login view
 
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-  };
+//   // Handles successful login
+//   const handleLoginSuccess = () => {
+//     setIsLoggedIn(true);
+//   };
 
-  const handleSignupSuccess = () => {
-    setIsLoggedIn(true);
-    setIsSignup(false); // Switch to event form after signup
-  };
+//   // Handles successful signup
+//   const handleSignupSuccess = () => {
+//     setIsLoggedIn(true); // Mark as logged in
+//     setIsSignup(false);  // Switch to event creation after signup
+//   };
 
-  const toggleSignup = () => {
-    setIsSignup(!isSignup);
-  };
+//   // Toggles between login and signup views
+//   const toggleSignup = () => {
+//     setIsSignup(!isSignup);
+//   };
 
-  return (
-    <div className="admin-dashboard">
-      {isLoggedIn ? (
-        <CreateEventForm /> // Show the event form after login/signup
-      ) : isSignup ? (
-        <AdminSignupForm onSignupSuccess={handleSignupSuccess} />
-      ) : (
-        <AdminLoginForm onLoginSuccess={handleLoginSuccess} />
-      )}
+//   return (
+//     <div className="admin-dashboard">
+//       {/* If logged in, show event form */}
+//       {isLoggedIn ? (
+//         <CreateEventForm />
+//       ) : isSignup ? (
+//         // Show signup form if signup state is active
+//         <AdminSignupForm onSignupSuccess={handleSignupSuccess} />
+//       ) : (
+//         // Otherwise, show login form
+//         <AdminLoginForm onLoginSuccess={handleLoginSuccess} />
+//       )}
 
-      {!isLoggedIn && (
-        <div>
-          <button onClick={toggleSignup}>
-            {isSignup ? "Already have an account? Login" : "Don't have an account? Signup"}
-          </button>
-        </div>
-      )}
-    </div>
-  );
-}
+//       {/* Toggle between login and signup if not logged in */}
+//       {!isLoggedIn && (
+//         <div className="text-center mt-4">
+//           <button
+//             onClick={toggleSignup}
+//             className="underline text-blue-500 hover:text-blue-700"
+//           >
+//             {isSignup
+//               ? "Already have an account? Login"
+//               : "Don't have an account? Signup"}
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }

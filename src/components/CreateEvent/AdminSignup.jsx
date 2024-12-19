@@ -1,75 +1,70 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
-export default function AdminSignupForm({ onSignupSuccess }) {
-  const [signupData, setSignupData] = useState({
-    username: "",
-    password: "",
-    confirmPassword: "",
-  });
+export default function AdminSignupForm() {
+  const[name, setName] = useState("");
+    const[email, setEmail] = useState("");
+    const[password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setSignupData({
-      ...signupData,
-      [name]: value,
+    async function registerAdmin(e){
+      e.preventDefault();
+
+      if (!name || !email || !password || !confirmPassword) {
+        alert("All fields are required.");
+        return;  // Stop further execution if any field is empty
+      }
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
+
+    axios.post("http://localhost:3001/AdminSignup", { name, email, password })
+    .then(response => {
+      console.log("Response:", response.data);
+      alert("Registration successful!");
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Registration failed.");
     });
-  };
+  }
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-
-    if (signupData.password !== signupData.confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    // Here you can replace with actual API call
-    console.log("Signup successful:", signupData);
-    onSignupSuccess();
-  };
-
-  return (
-    <div className="mt-4 grow flex items-center justify-around">
+return (
+  <div className="mt-4 grow flex items-center justify-around">
     <div className="mb-64">
-      <h2 className="text-4xl text-center mb-4">Admin Signup</h2>
-      <form className="max-w-md mx-auto" onSubmit={handleSignup}>
-        <div>
-          <label>Username</label>
-          <input
-            type="text"
-            name="username"
-            value={signupData.username}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={signupData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={signupData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <button className="primary" type="submit">Signup</button>
+      <h1 className="text-4xl text-center mb-4">Admin Register</h1>
+      <form className="max-w-md mx-auto" onSubmit={registerAdmin}>
+          <input type="text"
+                   placeholder="username"
+                   value={name}
+                   onChange={ev => setName(ev.target.value)}/>
+        <input type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={ev => setEmail(ev.target.value)}
+              required
+              />
+        <input type="password"
+              placeholder="password"
+              value={password}
+              onChange={ev => setPassword(ev.target.value)}
+              />
+        <input type="password"
+              placeholder="confirm password"
+              value={confirmPassword}
+              onChange={ev => setConfirmPassword(ev.target.value)}
+              />
+
+        <button className="primary">Register</button>
         <div className="text-center py-2 text-gray-500">
-            Already a member? <Link className="underline text-black" to={'/CreateEvent/AdminLogin'}>Login</Link>
+          Already a member? <Link className="underline text-black" to={'/CreateEvent/AdminLogin'}>Login</Link>
         </div>
       </form>
-      </div>
     </div>
-  );
+  </div>
+
+);
+
 }

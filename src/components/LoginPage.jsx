@@ -4,20 +4,24 @@ import {Link} from "react-router-dom";
 import { useState} from "react";
 
 export default function LoginPage() {
-
   const[email, setEmail] = useState("");
   const[password, setPassword] = useState("");
-  async function handleLoginSubmit(ev){
+  async function handleLoginSubmit(ev) {
     ev.preventDefault();
-    try {
-      await axios.post("http://localhost:3000/test", { email, password });
-      // console.log("Response:", response.Link);
-      alert("Login successful!");
-    }
-    catch(e) {
-      alert("Login failed.");
-    }
+  
+    console.log("Sending login request:", { email, password }); // Debug log
+  
+    axios.post("http://localhost:3001/login", { email, password })
+      .then(response => {
+        console.log("Response:", response.data); // Log the response
+        alert("Login successful!");
+      })
+      .catch(error => {
+        console.error("Error during login:", error.response?.data || error.message); // Log detailed error
+        alert("Login failed. Please check your credentials.");
+      });
   }
+  
 
   return (
     <div className="mt-4 grow flex items-center justify-around">
