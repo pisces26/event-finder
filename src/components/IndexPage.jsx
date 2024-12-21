@@ -5,6 +5,7 @@ import CategorySection from "./CategorySection";
 import eventsData from "../data/eventsData"; // Your events JSON data
 import '../App.css';
 import EventCarousel from "./EventCarousel";
+import EventCards from "./CreateEvent/EventCard";
 
 export default function IndexPage() {
   return (
@@ -20,7 +21,7 @@ export default function IndexPage() {
           />
         ))}
       </div>
-      
+      <EventCards />
     </div>
   );
 }

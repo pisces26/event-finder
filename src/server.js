@@ -45,7 +45,6 @@ app.post("/AdminSignup", adminRegister);
 // POST route for admin login
 app.post("/AdminLogin", adminLogin);
 
-
 // Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

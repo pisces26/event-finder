@@ -3,7 +3,7 @@ import EventModel from "../models/Event.js";
 
 const DBEventsData = [
   {
-    title: "Musically Yours",
+    title: "Concerts",
     events: [
       {
         title: "Rahul Deshpande Collective",
@@ -16,7 +16,7 @@ const DBEventsData = [
     ],
   },
   {
-    title: "Comedy Central",
+    title: "Standup",
     events: [
       {
         title: "Samay Raina",
@@ -29,7 +29,7 @@ const DBEventsData = [
     ],
   },
   {
-    title: "Drama and Delight",
+    title: "Plays",
     events: [
       {
         title: "Mughal-E-Azam",
@@ -41,13 +41,39 @@ const DBEventsData = [
       },
     ],
   },
+  {
+    title: "Workshops",
+    events: [
+      {
+        title: "Pottery Workshop",
+        date: "Sat, 9 Nov",
+        location: "Camp, Pune",
+        price: "Rs. 300 onwards",
+        image: "/Assets/DramaDelight.jpg",
+        category: "Workshops",
+      },
+    ],
+  },
+  {
+    title: "Activities",
+    events: [
+      {
+        title: "Christmas Party",
+        date: "Thurs, 25 Dec",
+        location: "Baner, Pune",
+        price: "Rs. 800 onwards",
+        image: "/Assets/DramaDelight.jpg",
+        category: "Activities",
+      },
+    ],
+  },
 ];
 
 
 const seedDatabase = async () => {
   try {
     // Step 1: Connect to MongoDB
-    await mongoose.connect("mongodb://127.0.0.1:27017/test", {
+    await mongoose.connect("mongodb+srv://foxEvent:2neJ3ExBIz2Fs2JP@cluster0.1cd3z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

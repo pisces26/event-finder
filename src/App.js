@@ -10,6 +10,10 @@ import EventForm from "./components/CreateEvent/EventForm.jsx";
 import AdminSignupForm from "./components/CreateEvent/AdminSignup.jsx";
 import AdminLoginForm from "./components/CreateEvent/AdminLogin.jsx";
 import Plays from "./components/category/Plays.jsx";
+import Concerts from "./components/category/Concerts.jsx";
+import Standup from "./components/category/Standup.jsx";
+import Workshops from "./components/category/Workshops.jsx";
+import Activities from "./components/category/Activities.jsx";
 
 const App = () => {
   return (
@@ -21,6 +25,15 @@ const App = () => {
       <Route path="/register" element={<RegisterPage/>} />
 
       <Route path="/category/Plays" element={<Plays />} />
+
+      <Route path="/category/Concerts" element={<Concerts />} />
+
+      <Route path="/category/Standup" element={<Standup />} />
+
+      <Route path="/category/Workshops" element={<Workshops />} />
+
+      <Route path="/category/Activities" element={<Activities />} />
+
       <Route path="/CreateEvent/EventForm" element={<EventForm />} />
 
       <Route path="/CreateEvent/AdminSignup" element={<AdminSignupForm />} />

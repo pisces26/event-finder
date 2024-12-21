@@ -16,9 +16,10 @@ const Header = () => (
       <CitySelector />
       <div className="profile-menu">
       <ProfileButton/>
+      </div>
+      <div className="right-side-menu">
       <RightSideMenu />
       </div>
-
     </div>
   </header>
 );
