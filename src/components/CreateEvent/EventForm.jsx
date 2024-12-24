@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+import moment from "moment";
+import { useEffect } from "react";
 
 export default function CreateEventForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +18,13 @@ export default function CreateEventForm() {
     organizers: [""],
   });
 
+  useEffect(() => {
+    if (!window.sessionStorage.getItem("signInToken")) {
+      alert("Please login to create an event.");
+      window.location.href = "/login";
+    }
+  }, []);
+  
   const handleCheckboxChange = (field, value) => {
     setFormData((prevState) => {
       const updatedField = prevState[field].includes(value)
@@ -64,7 +74,31 @@ export default function CreateEventForm() {
       alert("Please fill all required fields.");
       return;
     }
-    alert("Form Data Submitted");
+
+    const formInfo = {
+      title: formData.eventTitle || "",
+      date: moment(formData.dateTime).format("YYYY-MM-DD") || "",
+      price: formData.priceRange[0] || "",
+      location: formData.location || "",
+      category: formData.category[0] || "",
+      // eventType: eventType || "",
+    // language: language || "",
+    // poster: poster || "",
+    // totalSeats: totalSeats || "",
+    // image: image || "temp",
+    // artists: artists || "",
+    // organizers: organizers || "",
+    };
+    console.log("formValues:", formInfo);
+    axios.post("http://localhost:3001/eventFormSubmit", formInfo)
+    .then(response => {
+      console.log("Response:", response.data);
+      alert("Event registration successful!");
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Event registration failed.");
+    });
   };
 
   return (

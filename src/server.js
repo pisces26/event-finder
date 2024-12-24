@@ -8,6 +8,8 @@ import {adminRegister} from './routes/adminRegistration.js';
 import { dbConnector } from './database.js';
 import { userLogin } from './routes/userLogin.js';
 import { adminLogin } from './routes/adminLogin.js';
+import { eventFormSubmit } from './routes/eventFormSubmit.js';
+import fetchEvent from './routes/fetchEvent.js';
 
 // import router from './routes/events.js'; 
 import eventRoutes from "./routes/fetchEvent.js";
@@ -44,6 +46,11 @@ app.post("/AdminSignup", adminRegister);
 
 // POST route for admin login
 app.post("/AdminLogin", adminLogin);
+
+// POST route for event form data submit
+app.post("/eventFormSubmit", eventFormSubmit);
+
+app.use("/api/events", fetchEvent);
 
 // Start the server
 app.listen(port, () => {
