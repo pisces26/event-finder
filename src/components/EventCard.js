@@ -1,4 +1,5 @@
 import React from "react";
+import { fetchEventDetails } from "../utilities/fetchSingleEventData.js";
 
 const EventCard = ({ event }) => (
   <div className="event-card">
@@ -9,7 +10,7 @@ const EventCard = ({ event }) => (
       <p>{event.location}</p>
       <p className="price">{event.price}</p>
     </div>
-    <button className="card-button">Book Now</button>
+    <button onClick={()=>fetchEventDetails(event, "eventDetails")} className="card-button">Book Now</button>
   </div>
 );
 

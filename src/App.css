@@ -56,7 +56,15 @@ button.primary{
     background-color: #32c38f;
     @apply  p-2 w-full text-white rounded-2xl;
 }
-
+.card-button{
+  background-color: #32c38f;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  cursor: pointer;
+}
 
 
 /* General Styles */

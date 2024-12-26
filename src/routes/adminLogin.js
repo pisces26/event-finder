@@ -10,6 +10,7 @@ const adminLogin = async (req, res) => {
   }
 
   try {
+    console.log("Finding admin in DB for email:", email);
     const admin = await AdminModel.findOne({ email });
     console.log("Admin found in DB:", admin);
 

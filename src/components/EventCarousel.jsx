@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./EventCarousel.css";
+import { fetchEventDetails } from "../utilities/fetchSingleEventData";
 
 const EventCarousel = () => {
   const events = [
@@ -57,7 +58,11 @@ const EventCarousel = () => {
       >
         {events.map((event) => (
           <div className="carousel-slide" key={event.id}>
-            <img src={event.image} alt={event.title} className="carousel-image" />
+            <img
+              src={event.image}
+              alt={event.title}
+              className="carousel-image"
+            />
             <div className="event-details">
               <h2 className="event-title">{event.title}</h2>
               <p className="event-date">
@@ -69,7 +74,12 @@ const EventCarousel = () => {
               <p className="event-location">
                 <strong>Location:</strong> {event.location}
               </p>
-              <button className="book-now-btn">Book Now</button>
+              <button
+                onClick={() => fetchEventDetails(event, "eventDetails")}
+                className="book-now-btn"
+              >
+                Book Now
+              </button>
             </div>
           </div>
         ))}
@@ -84,9 +94,7 @@ const EventCarousel = () => {
         {events.map((_, index) => (
           <span
             key={index}
-            className={`indicator ${
-              index === currentIndex ? "active" : ""
-            }`}
+            className={`indicator ${index === currentIndex ? "active" : ""}`}
             onClick={() => setCurrentIndex(index)}
           ></span>
         ))}

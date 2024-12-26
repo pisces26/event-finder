@@ -5,8 +5,9 @@ const eventSchema = new Schema({
   date: String,
   location: String,
   price: String,
-  image: String,
+  // image: String,
   category: String, // For categorizing events
+  artists: String,
 });
 
 const EventModel = model("events", eventSchema);

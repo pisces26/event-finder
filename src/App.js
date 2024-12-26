@@ -14,6 +14,7 @@ import Concerts from "./components/category/Concerts.jsx";
 import Standup from "./components/category/Standup.jsx";
 import Workshops from "./components/category/Workshops.jsx";
 import Activities from "./components/category/Activities.jsx";
+import EventDetailsIndex from "./components/EventDetailsIndex.jsx";
 
 const App = () => {
   return (
@@ -38,6 +39,8 @@ const App = () => {
 
       <Route path="/CreateEvent/AdminSignup" element={<AdminSignupForm />} />
       <Route path="/CreateEvent/AdminLogin" element={<AdminLoginForm />} />
+      <Route path="/eventdetails" element={<EventDetailsIndex />} />
+
 
     </Route>
 

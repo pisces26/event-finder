@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
 // Endpoint to fetch events by category
 router.get("/category/:category", async (req, res) => {
   const { category } = req.params;
+  console.log("category: ",category);
   try {
     const events = await EventModel.find({ category });
     res.json(events);

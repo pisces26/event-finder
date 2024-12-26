@@ -3,8 +3,8 @@ import EventDataModel from "../models/EventData.js";
 const eventFormSubmit = async (req, res) => {
   console.log("Request received at /eventFormSubmit:", req.body);
 
-  const { category, price, date, location, title } = req.body;
-  if (!category || !price || !date || !location || !title) {
+  const { category, price, date, location, title, artists, organizers, totalSeats, language, eventType} = req.body;
+  if (!category || !price || !date || !location || !title || !artists) {
     console.log("Missing required fields"); // Debug
     return res.status(400).json({ message: "All fields are required" });
   }
@@ -16,6 +16,11 @@ const eventFormSubmit = async (req, res) => {
       price,
       location,
       category,
+      artists,
+      organizers,
+      totalSeats,
+      language,
+      eventType
     });
     console.log("Event saved to DB");
     res.status(201).json({ message: "Event created successfully" });

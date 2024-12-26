@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../App.css';
+import {fetchEventDetails, fetchAllEvents} from "../../utilities/fetchSingleEventData.js";
 
 export const WorkshopsCard = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/api/events/category/Workshops")
-      .then((response) => {
-        setEvents(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching workshop events:", error);
-      });
+    fetchAllEvents("Workshops").then((response) => {
+      setEvents(response);
+    })
   }, []);
 
   return (
     <div className="event-grid">
       {events.map((event) => (
         <div key={event._id} className="event-card">
-          <img src={event.image} alt={event.title} />
+          <img src={event?.image} alt={event.title} />
           <div className="card-content">
-          <h3>{event.title}</h3>
-          <p>{event.date}</p>
-          <p>{event.location}</p>
-          <p className="price">{event.price}</p>
+          <h3>{event?.title}</h3>
+          <p>{event?.date}</p>
+          <p>{event?.location}</p>
+          <p className="price">{event?.price}</p>
+          <button onClick={()=>fetchEventDetails(event, "eventDetails")} className="card-button">Book Now</button>
           </div>
         </div>
       ))}

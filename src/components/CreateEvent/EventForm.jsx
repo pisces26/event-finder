@@ -74,20 +74,18 @@ export default function CreateEventForm() {
       alert("Please fill all required fields.");
       return;
     }
-
+    console.log(formData.priceRange);
     const formInfo = {
       title: formData.eventTitle || "",
       date: moment(formData.dateTime).format("YYYY-MM-DD") || "",
       price: formData.priceRange[0] || "",
       location: formData.location || "",
       category: formData.category[0] || "",
-      // eventType: eventType || "",
-    // language: language || "",
-    // poster: poster || "",
-    // totalSeats: totalSeats || "",
-    // image: image || "temp",
-    // artists: artists || "",
-    // organizers: organizers || "",
+      artists: formData.artists[0] || "",
+      organizers: formData.organizers[0] || "",
+      totalSeats: formData.totalSeats || "",
+      language: formData.language[0] || "",
+      eventType: formData.eventType[0] || "",
     };
     console.log("formValues:", formInfo);
     axios.post("http://localhost:3001/eventFormSubmit", formInfo)

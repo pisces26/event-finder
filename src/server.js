@@ -10,7 +10,7 @@ import { userLogin } from './routes/userLogin.js';
 import { adminLogin } from './routes/adminLogin.js';
 import { eventFormSubmit } from './routes/eventFormSubmit.js';
 import fetchEvent from './routes/fetchEvent.js';
-
+import { findPlay } from './routes/findPlay.js';
 // import router from './routes/events.js'; 
 import eventRoutes from "./routes/fetchEvent.js";
 // const MONGO_URI = "mongodb://localhost:27017/eventDatabase";
@@ -50,7 +50,12 @@ app.post("/AdminLogin", adminLogin);
 // POST route for event form data submit
 app.post("/eventFormSubmit", eventFormSubmit);
 
+// fetch all events
 app.use("/api/events", fetchEvent);
+
+// fetch particular event data
+app.post("/api/eventDetails", findPlay);
+
 
 // Start the server
 app.listen(port, () => {
