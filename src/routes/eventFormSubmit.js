@@ -8,7 +8,7 @@ const eventFormSubmit = async (req, res) => {
     console.log("Missing required fields"); // Debug
     return res.status(400).json({ message: "All fields are required" });
   }
-
+  const file = req.files.poster;
   try {
     const event = await EventDataModel.create({
       title,
@@ -20,7 +20,12 @@ const eventFormSubmit = async (req, res) => {
       organizers,
       totalSeats,
       language,
-      eventType
+      eventType,
+      poster: {
+        name: file.name,
+        data: file.data,
+        contentType: file.mimetype,
+      }
     });
     console.log("Event saved to DB");
     res.status(201).json({ message: "Event created successfully" });

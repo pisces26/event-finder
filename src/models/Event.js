@@ -8,6 +8,11 @@ const eventSchema = new Schema({
   // image: String,
   category: String, // For categorizing events
   artists: String,
+  poster: {
+    name: String,
+    data: Buffer,
+    contentType: String,
+  },
 });
 
 const EventModel = model("events", eventSchema);

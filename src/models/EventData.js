@@ -11,7 +11,11 @@ const EventDataSchema = new mongoose.Schema({
     totalSeats: { type: String, required: true },
     language: { type: String, required: true },
     eventType: { type: String, required: true },
-
+    poster: {
+        name: { type: String, required: true }, // Original file name
+        data: { type: Buffer, required: true }, // Binary file data
+        contentType: { type: String, required: true }, // MIME type (e.g., image/png)
+      },
 });
 
 const EventDataModel = mongoose.model("event", EventDataSchema);

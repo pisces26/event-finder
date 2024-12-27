@@ -21,7 +21,7 @@ export default function CreateEventForm() {
   useEffect(() => {
     if (!window.sessionStorage.getItem("signInToken")) {
       alert("Please login to create an event.");
-      window.location.href = "/login";
+      window.location.href = "/CreateEvent/AdminLogin";
     }
   }, []);
   
@@ -39,6 +39,7 @@ export default function CreateEventForm() {
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
+    console.log("handleChange: ", name);
     setFormData({
       ...formData,
       [name]: type === "file" ? files[0] : value,
@@ -74,7 +75,12 @@ export default function CreateEventForm() {
       alert("Please fill all required fields.");
       return;
     }
-    console.log(formData.priceRange);
+    const posterData = new FormData();
+    posterData.append("poster", formData.poster);
+    console.log("poster data conv: ", formData.poster);
+    // console.log("poster data conv2: ", formData.poster.file[0]);
+    
+    console.log("Poster data:", posterData);
     const formInfo = {
       title: formData.eventTitle || "",
       date: moment(formData.dateTime).format("YYYY-MM-DD") || "",
@@ -86,9 +92,15 @@ export default function CreateEventForm() {
       totalSeats: formData.totalSeats || "",
       language: formData.language[0] || "",
       eventType: formData.eventType[0] || "",
+      poster: formData.poster || "",
     };
     console.log("formValues:", formInfo);
-    axios.post("http://localhost:3001/eventFormSubmit", formInfo)
+    axios.post("http://localhost:3001/eventFormSubmit", formInfo, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+    }
+    )
     .then(response => {
       console.log("Response:", response.data);
       alert("Event registration successful!");

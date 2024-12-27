@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import fileUpload from 'express-fileupload';
 // import mongoose from 'mongoose';
 dotenv.config();
 import {userRegister} from './routes/registration.js';
@@ -21,7 +22,7 @@ const port = 3001;
 
 
 app.use("/api/Event", eventRoutes); 
-
+app.use(fileUpload());
 
 app.use(
   cors({

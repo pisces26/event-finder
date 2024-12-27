@@ -18,7 +18,7 @@ export default function AdminLoginForm() {
       .then(response => {
         console.log("Response:", response.data); // Log the response
         alert("Login successful!");
-
+        window.sessionStorage.setItem("signInToken", "userLoggedIn");
         navigate ("/CreateEvent/EventForm") // Redirect to the event form
       })
       .catch(error => {
