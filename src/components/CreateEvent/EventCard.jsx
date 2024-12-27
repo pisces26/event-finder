@@ -18,7 +18,27 @@ export const EventCards = () => {
       .get("http://localhost:3001/api/events") 
       .then((response) => {
         const fetchedEvents = response.data;
+        console.log("fetchedEvents: ", fetchedEvents);
 
+        for (let i = 0; i < fetchedEvents.length; i++) {
+          if (fetchedEvents[i].poster) {
+            const posterData = fetchedEvents[i].poster?.data?.data; // Access raw byte data
+            const posterContentType = fetchedEvents[i].poster?.contentType; // Access the MIME type
+            const uint8Array = new Uint8Array(posterData);
+            let binaryString = "";
+            for (let i = 0; i < uint8Array.length; i++) {
+              binaryString += String.fromCharCode(uint8Array[i]);
+            }
+  
+            // Encode to Base64
+            const base64String = btoa(binaryString);
+  
+            // Construct the Data URI
+            const dataURI = `data:${posterContentType};base64,${base64String}`;
+            fetchedEvents[i].poster = dataURI;
+          }
+        }
+        
         // Group events by category
         const categorizedEvents = fetchedEvents.reduce((acc, event) => {
           if (!acc[event.category]) {
@@ -45,7 +65,7 @@ export const EventCards = () => {
         <div className="event-grid">
         {categories[category].map((event) => (
           <div key={event._id} className="event-card">
-          <img src={event.image} alt={event.title} />
+          <img src={event?.poster} alt={event.title} />
         <div className="card-content">
           <h2 >{event.title}</h2>
           <p >{event.date}</p>

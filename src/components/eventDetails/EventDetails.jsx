@@ -22,15 +22,32 @@ const EventDetails = () => {
       return "faHeart"; // Cycle back to 'beer'
     });
   };
-  
+
   useEffect(() => {
-    if(window.sessionStorage.getItem("eventData") === null) {
+    if (window.sessionStorage.getItem("eventData") === null) {
       window.location.href = "/"; // Redirect to home page if no event data in session storage
     }
     let selectedResponse = window.sessionStorage.getItem("eventData");
     selectedResponse = JSON.parse(selectedResponse);
-    setCurrentResponse(selectedResponse?.data);
+
+    if (selectedResponse.data.poster) {
+      const posterData = selectedResponse?.data?.poster?.data?.data; // Access raw byte data
+      const posterContentType = selectedResponse?.data?.poster?.contentType; // Access the MIME type
+      const uint8Array = new Uint8Array(posterData);
+      let binaryString = "";
+      for (let i = 0; i < uint8Array.length; i++) {
+        binaryString += String.fromCharCode(uint8Array[i]);
+      }
+
+      // Encode to Base64
+      const base64String = btoa(binaryString);
+
+      // Construct the Data URI
+      const dataURI = `data:${posterContentType};base64,${base64String}`;
+      selectedResponse.data.poster = dataURI;
+    }
     window.sessionStorage.removeItem("eventData");
+    setCurrentResponse(selectedResponse?.data);
   }, []);
 
   return (
@@ -44,7 +61,7 @@ const EventDetails = () => {
         <event-details>
           <h2>Event Details:</h2>
           <img
-            src="https://via.placeholder.com/600x400" // Replace with the actual image URL
+            src={currentResponse?.poster} // Replace with the actual image URL
             alt="Event"
             className="event-image"
           />
@@ -93,7 +110,7 @@ const EventDetails = () => {
           </div>
         </content>
 
-        <footer style={{display: "flex"}}>
+        <footer style={{ display: "flex" }}>
           <div id="naming">
             <div id="a">
               <h2>{currentResponse?.title}</h2>

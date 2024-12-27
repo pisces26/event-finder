@@ -12,7 +12,7 @@ const findPlay = async (req, res) => {
       console.log("playDoc: ", playDoc);
       res.status(201).json({
         message: "Play found successfully!",
-        data: { artists: playDoc.artists, title: playDoc.title, date: playDoc.date, location: playDoc.location, price: playDoc.price },
+        data: { artists: playDoc.artists, title: playDoc.title, date: playDoc.date, location: playDoc.location, price: playDoc.price, poster: playDoc.poster },
       });
     } catch (error) {
       console.error("Error finding play:", error);
