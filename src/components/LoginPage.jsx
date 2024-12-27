@@ -15,7 +15,7 @@ export default function LoginPage() {
       .then(response => {
         console.log("Response:", response.data); // Log the response
         alert("Login successful!");
-        window.sessionStorage.setItem("signInToken", "userLoggedIn");
+        
       })
       .catch(error => {
         console.error("Error during login:", error.response?.data || error.message); // Log detailed error

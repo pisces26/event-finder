@@ -74,12 +74,7 @@ const EventCarousel = () => {
               <p className="event-location">
                 <strong>Location:</strong> {event.location}
               </p>
-              <button
-                onClick={() => fetchEventDetails(event, "eventDetails")}
-                className="book-now-btn"
-              >
-                Book Now
-              </button>
+              <button onClick={()=>fetchEventDetails(event, "eventDetails")} className="card-button">Book Now</button>
             </div>
           </div>
         ))}

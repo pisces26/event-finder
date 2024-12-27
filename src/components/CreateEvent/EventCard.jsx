@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import '../../App.css';
+import { fetchEventDetails } from "../../utilities/fetchSingleEventData.js";
+
 
 export const EventCards = () => {
   // Define the state for events
@@ -60,7 +62,7 @@ export const EventCards = () => {
   return (
     <div className="event-container">
       {Object.keys(categories).map((category) => (
-        <div key={category} className="event-card">
+        <div key={category} className="event-category">
         <h2 >{category}</h2>
         <div className="event-grid">
         {categories[category].map((event) => (
@@ -70,8 +72,9 @@ export const EventCards = () => {
           <h2 >{event.title}</h2>
           <p >{event.date}</p>
           <p>{event.location}</p>
-          <p className="price">{event.price}</p>
+          <p className="price">Rs. {event.price}</p>
         </div>
+        <button onClick={()=>fetchEventDetails(event, "eventDetails")} className="card-button">Book Now</button>
           {/* <p className="event-category">{event.category}</p> */}
         </div>
         ))}

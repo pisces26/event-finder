@@ -119,7 +119,7 @@ export default function CreateEventForm() {
         <div className="mb-4">
           <label className="block text-cyan-700 font-bold mb-2">Select Your Category</label>
           <div className="flex flex-wrap">
-            {["Music", "Art & Crafts", "Dance", "Drama", "Games", "Culinary", "Competitions", "Comedy", "Sports", "Kids"].map((category) => (
+            {[ "Plays","Concerts", "Workshops",  "Standup", "Activities"].map((category) => (
               <label key={category} className="mr-4 mb-2">
                 <input
                   type="checkbox"
@@ -138,7 +138,7 @@ export default function CreateEventForm() {
         <div className="mb-4">
           <label className="block text-cyan-700 font-bold mb-2">Select Event Type</label>
           <div className="flex flex-wrap">
-            {["Festival", "Workshop", "Concert", "Show", "Contest", "Party"].map((type) => (
+            {["Music", "Art & Crafts", "Dance", "Drama", "Games", "Culinary", "Competitions", "Comedy", "Sports", "Kids",].map((type) => (
               <label key={type} className="mr-4 mb-2">
                 <input
                   type="checkbox"
